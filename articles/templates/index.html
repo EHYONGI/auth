@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    {% for article in articles %}
+        <div class="card my-3">
+            <div class="card-header">
+                <a class="text-decoration-none" href="{% url 'accounts:profile' username=article.user.username %}">{{article.user}}</a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">{{article.title}}</h5>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'articles:detail' id=article.id%}" class="btn btn-primary">detail</a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
